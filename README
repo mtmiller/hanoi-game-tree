@@ -1,0 +1,22 @@
+A somewhat optimized Python implementation of the Towers of Hanoi game,
+solved using an exhaustive search of a game tree.  The optimization is
+done on the internal representation of game state and action, not on the
+choice of solution.
+
+This is created as an exercise in Python programming as well as in game
+tree construction and search.  Also, in the near term, to help solve a
+problem on the final exam of the Stanford Online Introduction to
+Artificial Intelligence.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
