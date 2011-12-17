@@ -31,16 +31,21 @@ class Hanoi(object):
         self.tree = self.construct_game_tree(self.init_state)
 
     def __len__(self):
-        return len(self.visited_states)
+        return len(self.tree)
 
     def construct_game_tree(self, state):
         """Construct a game tree with the given initial state."""
-        root = node(state)
-        for next in self.possible_states(state):
-            if not next in self.visited_states:
-                self.visited_states.add(next)
-                root.children.append(self.construct_game_tree(next))
-        return root
+        tree = {}
+        frontier = [state]
+        while len(frontier):
+            state = frontier.pop(0)
+            tree[state] = []
+            for next in self.possible_states(state):
+                if not next in self.visited_states:
+                    self.visited_states.add(next)
+                    frontier.append(next)
+                    tree[state].append(next)
+        return tree
 
     def possible_states(self, state):
         """Return a list of possible successor states from the given state."""
@@ -68,17 +73,6 @@ class Hanoi(object):
             next[j] |= disk
             return tuple(next)
         return None
-
-class node(object):
-
-    """A state node container that encodes the state and references to
-       successor states.
-    """
-
-    def __init__(self, state, children=[]):
-        """Initialize a node with the given state and successor nodes."""
-        self.state = state
-        self.children = children
 
 if __name__ == '__main__':
     h = Hanoi(4)
