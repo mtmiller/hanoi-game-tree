@@ -74,6 +74,23 @@ class Hanoi(object):
             return tuple(next)
         return None
 
+    def shortest_path(self, init=None, goal=None):
+        """Find and return the shortest path from the start to the goal."""
+        if not init: init = self.init_state
+        if not goal: goal = self.goal_state
+        # We have already calculated the path, just rewind the transitions
+        state = goal
+        path = [goal]
+        while state != init:
+            for i in self.tree:
+                if state in self.tree[i]:
+                    state = i
+                    path.insert(0, state)
+                    break
+        return path
+
 if __name__ == '__main__':
     h = Hanoi(4)
     print "Size of the game tree: %d" % len(h)
+    path = h.shortest_path()
+    print "Optimal steps to the goal: %d" % (len(path) - 1)
